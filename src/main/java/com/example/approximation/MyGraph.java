@@ -1,9 +1,6 @@
 package com.example.approximation;
 
 import javafx.scene.chart.XYChart;
-import org.javatuples.Pair;
-
-import java.util.ArrayList;
 
 public class MyGraph {
 
@@ -15,7 +12,8 @@ public class MyGraph {
         this.range = range;
     }
 
-    public void plotLine(ArrayList<Pair<Double, Double>> points) {
+    public void plotLine(LineSet lineSet) {
+        var points = lineSet.getPoints();
         final XYChart.Series<Double, Double> series = new XYChart.Series<Double, Double>();
         for (int i = 0; i < points.size(); i++) {
             plotPoint(points.get(i).getValue0(), points.get(i).getValue1(), series);
