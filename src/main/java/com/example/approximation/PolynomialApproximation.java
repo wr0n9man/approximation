@@ -11,7 +11,8 @@ public class PolynomialApproximation {
         LineSet line = new LineSet();
         allocmatrix(points);
         var func = Calculate(points.size(), polyDegree);
-        for (double x = points.get(0).getValue0(); x <= points.get(points.size() - 1).getValue0(); x = x + 0.5) {
+        var xLast = points.get(points.size() - 1).getValue0();
+        for (double x = points.get(0).getValue0(); x <= xLast; x = x + 0.5) {
             line.addPoint(new Pair<>(x, func.apply(x)));
         }
         return line;
@@ -23,7 +24,7 @@ public class PolynomialApproximation {
     private static double[] y;
     private static double[][] sums;
 
-    private static void Refresh(int K) {
+    private static void refresh(int K) {
         for (int i = 0; i < K; i++) {
             a[i] = b[i] = 0;
             for (int j = 0; j < K; j++)
@@ -49,7 +50,7 @@ public class PolynomialApproximation {
     private static Function<Double, Double> Calculate(int N, int K) {
         int i, j, k;
         double s, t, M;
-        Refresh(K);
+        refresh(K);
         //упорядочиваем узловые точки по возрастанию абсцисс
         for (i = 0; i < N; i++) {
             for (j = i; j >= 1; j--)
