@@ -22,7 +22,7 @@
                         <Button fx:id="polynomial" mnemonicParsing="false" onAction="#polyApproxButton_Click" prefHeight="80.0" textAlignment="CENTER" prefWidth="193.0" text="Полиномиальная аппроксимация"/>
                         <Label fx:id="polyLabel" prefWidth="193.0" prefHeight="30.0" text="Степень полинома"/>
                         <TextField fx:id="polyDegree"/>
-                        <Button fx:id="clearButton" mnemonicParsing="false" onAction="#handleClearButtonAction" prefHeight="80.0" textAlignment="CENTER" prefWidth="266.0" text="Очистить плоскость" />
+                        <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearButton_Click" prefHeight="80.0" textAlignment="CENTER" prefWidth="266.0" text="Очистить плоскость" />
                         <Button fx:id="getNextLineSetButton" mnemonicParsing="false" onAction="#getNextLineSetButton_Click" prefHeight="80.0" textAlignment="CENTER" prefWidth="266.0" text="Следующий набор" />
                         <Button fx:id="getPreviousLineSetButton" mnemonicParsing="false" onAction="#getPreviousLineSetButton_Click" prefHeight="80.0" textAlignment="CENTER" prefWidth="266.0" text="Предыдущий набор" />
                     </children>

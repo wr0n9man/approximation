@@ -2,6 +2,7 @@ package com.example.approximation;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 
 public class DataBase {
@@ -13,21 +14,21 @@ public class DataBase {
         return DriverManager.getConnection(url, username, password);
     }
 
-    public static ArrayList<LineSetDAO> getLineSets() throws Exception {
+    public static ArrayList<LineSet> getLineSets() throws Exception {
         try (Connection connection = createConnection()) {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(
                     "SELECT line_set.xcord, line_set.ycord, line_set.npoints FROM mydb.line_set"
             );
-            ArrayList<LineSetDAO> shapesDAO = new ArrayList<>();
+            ArrayList<LineSetDAO> lineSetDAO = new ArrayList<>();
             while (resultSet.next()) {
-                shapesDAO.add(new LineSetDAO(
+                lineSetDAO.add(new LineSetDAO(
                         resultSet.getString(1),
                         resultSet.getString(2),
                         resultSet.getInt(3)
                 ));
             }
-            return shapesDAO;
+            return lineSetDAO.stream().map(LineSetDAO::getLineSet).collect(Collectors.toCollection(ArrayList::new));
         } catch (SQLException e) {
             throw new SQLException();
         } catch (Exception e) {

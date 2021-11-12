@@ -7,7 +7,6 @@ import javafx.scene.control.TextField;
 import org.javatuples.Pair;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class MainAppController {
 
@@ -26,7 +25,7 @@ public class MainAppController {
         logger = new ConsoleLog();
         sets = new ArrayList<>();
         try {
-            sets = DataBase.getLineSets().stream().map(lineSetDAO -> lineSetDAO.getLineSet()).collect(Collectors.toCollection(ArrayList<LineSet>::new));
+            sets = DataBase.getLineSets();
         } catch (Exception e) {
             sets.add(getStandartLineSet());
             e.printStackTrace();
@@ -106,7 +105,7 @@ public class MainAppController {
     }
 
     @FXML
-    private void handleClearButtonAction() {
+    private void clearButton_Click() {
         clear();
     }
 
