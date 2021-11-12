@@ -5,11 +5,11 @@ import org.javatuples.Pair;
 import java.util.ArrayList;
 
 public class LagrangeInterpolation {
-    public static ArrayList<Pair<Double, Double>> lagrangeInterpolation(ArrayList<Pair<Double, Double>> points) {
-
-        ArrayList<Pair<Double, Double>> line = new ArrayList<>();
+    public static LineSet lagrangeInterpolation(LineSet lineSet) {
+        var points = lineSet.getPoints();
+        LineSet line = new LineSet();
         for (double x = points.get(0).getValue0(); x <= points.get(points.size()-1).getValue0(); x = x + 0.5) {
-            line.add(new Pair<>(x, calc(points, x)));
+            line.addPoint(new Pair<>(x, calc(points, x)));
         }
         return line;
     }
@@ -20,9 +20,9 @@ public class LagrangeInterpolation {
             var currentPoint = points.get(i);
             double l = 1;
             for (int j = 0; j < points.size(); ++j) {
-                var innerCurrentPoint = points.get(j);
+                var innerCurrentPoint_X = points.get(j).getValue0();
                 if (j != i)
-                    l *= (x - innerCurrentPoint.getValue0()) / (currentPoint.getValue0() - innerCurrentPoint.getValue0());
+                    l *= (x - innerCurrentPoint_X) / (currentPoint.getValue0() - innerCurrentPoint_X);
             }
             sum += currentPoint.getValue1() * l;
         }

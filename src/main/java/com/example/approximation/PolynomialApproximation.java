@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import java.util.function.Function;
 
 public class PolynomialApproximation {
-    public static ArrayList<Pair<Double, Double>> polynomialApproximation(ArrayList<Pair<Double, Double>> points, int polyDegree) {
-        ArrayList<Pair<Double, Double>> line = new ArrayList<>();
+    public static LineSet polynomialApproximation(LineSet lineSet, int polyDegree) {
+        var points = lineSet.getPoints();
+        LineSet line = new LineSet();
         allocmatrix(points);
         var func = Calculate(points.size(), polyDegree);
         for (double x = points.get(0).getValue0(); x <= points.get(points.size() - 1).getValue0(); x = x + 0.5) {
-            line.add(new Pair<>(x, func.apply(x)));
+            line.addPoint(new Pair<>(x, func.apply(x)));
         }
         return line;
     }
@@ -39,8 +40,9 @@ public class PolynomialApproximation {
         sums = new double[N][N];
 
         for (int i = 0; i < N; i++) {
-            x[i] = points.get(i).getValue0();
-            y[i] = points.get(i).getValue1();
+            var currentPoint = points.get(i);
+            x[i] = currentPoint.getValue0();
+            y[i] = currentPoint.getValue1();
         }
     }
 

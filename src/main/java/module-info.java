@@ -10,6 +10,7 @@ module com.example.approximation {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires javatuples;
+    requires java.sql;
 
     opens com.example.approximation to javafx.fxml;
     exports com.example.approximation;
